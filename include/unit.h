@@ -16,6 +16,7 @@
 #endif
 
 #include "mesh.h"
+#include "globals.h"
 
 class Unit
 {
