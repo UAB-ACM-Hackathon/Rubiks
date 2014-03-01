@@ -93,27 +93,6 @@ void Sector::rotate_units(Unit *units, int direction)
   }
 }
 
-// displays the current configuration of the faces array
-void Sector::print_indices()
-{
-  for (int i=0; i<8; i++)
-  {
-    cout << this->cube_indices[i] << " ";
-  }
-  
-  cout << endl;
-}
-
-/*
-int main() 
-{
-  int x [9] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-  Sector sector(x, 1, -1);
-  sector.print_indices();
-}
-*/
-
-
 //***************************************************************************//
 // END OF FILE / sector.cpp                                                  //
 //***************************************************************************//
