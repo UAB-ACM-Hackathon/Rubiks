@@ -116,6 +116,10 @@ void display()
   glPushMatrix();
 
 	glScalef( zoom, zoom, zoom );
+	glTranslatef( transx, transy, transz );
+	glRotatef( rotx, 1.0, 0.0, 0.0 );
+	glRotatef( roty, 0.0, 1.0, 0.0 );
+	glRotatef( rotz, 0.0, 0.0, 1.0 );
 
   // draw objects
 	test_cube.draw();
@@ -130,6 +134,11 @@ void display()
 
 void timer( int value )
 {
+	if ( keys[GLUT_KEY_RIGHT] ) { rotx += 15; if ( rotx > 360 ) rotx -= 360; }
+	if ( keys[GLUT_KEY_LEFT]  ) { rotx -= 15; if ( rotx < 360 ) rotx += 360; }
+	if ( keys[GLUT_KEY_UP]    ) { roty += 15; if ( roty > 360 ) rotx -= 360; }
+	if ( keys[GLUT_KEY_DOWN]  ) { roty -= 15; if ( roty < 360 ) rotx += 360; }
+
   glutTimerFunc( 25, timer, 0 );
   glutPostRedisplay();
 }
