@@ -10,7 +10,7 @@ run:
 	./rubiks.out
 	
 add:
-	git add README.md LICENSE makefile src/*.cpp include/*.h
+	git add README.md LICENSE makefile src/*.cpp include/*.h meshes/*.off
 	
 push:
 	git push -u origin master
