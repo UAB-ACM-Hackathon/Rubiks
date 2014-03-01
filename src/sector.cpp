@@ -74,6 +74,7 @@ void Sector::ccw_rotate()
   faces[7] = t0; faces[6] = t1;
 }
 
+// displays the current configuration of the faces array
 void Sector::display_faces()
 {
   for (int i=0; i<8; i++)
