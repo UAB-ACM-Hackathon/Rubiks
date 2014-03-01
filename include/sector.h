@@ -8,18 +8,21 @@
 #ifndef L_SECTOR_H
 #define L_SECTOR_H
 
+#include "unit.h"
+
 class Sector
 {
   private:
-    int *faces;                           // list of faces
+    int *cube_indices;                    // list of indices
     int orientation;                      // orientation of the sector
+    int position;                         // holds inner/outer property
     
   public:
-    Sector( int *faces, int orientation); // constructor
-    void rotate(int direction);           // simulate a rotation CW||CCW
-    void cw_rotate();                     // perform rotation CW
-    void ccw_rotate();                    // perform rotation CCW
-    void display_faces();                 // print faces array
+    Sector(int *cube_indices, int orientation, int position); // constructor
+    void rotate(Unit *units, int direction); // simulate a rotation CW||CCW
+    void cw_rotate(Unit *units);          // perform rotation CW
+    void ccw_rotate(Unit *units);         // perform rotation CCW
+    void print_indices();                 // print cube_indices array
 };
 
 #endif

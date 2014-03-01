@@ -13,77 +13,87 @@ using namespace std;
 /*
  * Sector constructor initializes with a set of faces and an orientation
  */
-Sector::Sector( int *faces, int orientation)
+Sector::Sector( int *cube_indices, int orientation, int position)
 {
-	this->faces = new int[8];
-	this->faces = faces;
+	this->cube_indices = new int[9];
+	this->cube_indices = cube_indices;
 	this->orientation = orientation;
+	this->position = position;
 }
 
 /*
  * Rotate function called to rotate a sector in a given direction.
  * argument: 0 = CW, 1 = CCW
  */
-void Sector::rotate( int direction ) 
+void Sector::rotate(Unit *units, int direction)
 {
   if (direction == 0)
   {
-    cw_rotate();
+    cw_rotate(units);
   } 
   else
   {
-    ccw_rotate();
+    ccw_rotate(units);
   }
 }
 
 /*
  * Simulate a sector rotation in a CW direction.
  */
-void Sector::cw_rotate()
+void Sector::cw_rotate(Unit *units)
 {
-  int t0,t1,t2;
-  t0 = faces[0]; t1 = faces[1];
+  Unit t0 = units[0]; 
+  Unit t1 = units[1];
   
   for (int i=2; i<8; i++)
   {
-    t2 = faces[i];
-    faces[i] = t0;
+    Unit t2 = units[i];
+    units[i] = t0;
     t0 = t1;
     t1 = t2;
   }
   
-  faces[0] = t0; faces[1] = t1;
+  units[0] = t0; units[1] = t1;
 }
 
 /*
  * Simulate a sector rotation in a CCW direction.
  */
-void Sector::ccw_rotate()
+void Sector::ccw_rotate(Unit *units)
 {
-  int t0,t1,t2;
-  t0 = faces[7]; t1 = faces[6];
+  Unit t0 = units[7]; 
+  Unit t1 = units[6];
   
   for (int i=5; i>=0; i--)
   {
-    t2 = faces[i];
-    faces[i] = t0;
+    Unit t2 = units[i];
+    units[i] = t0;
     t0 = t1;
     t1 = t2;
   }
   
-  faces[7] = t0; faces[6] = t1;
+  units[7] = t0; units[6] = t1;
 }
 
 // displays the current configuration of the faces array
-void Sector::display_faces()
+void Sector::print_indices()
 {
   for (int i=0; i<8; i++)
   {
-    cout << this->faces[i] << " ";
+    cout << this->cube_indices[i] << " ";
   }
   
   cout << endl;
 }
+
+/*
+int main() 
+{
+  int x [9] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+  Sector sector(x, 1, -1);
+  sector.print_indices();
+}
+*/
 
 //***************************************************************************//
 // END OF FILE / sector.cpp                                                  //
