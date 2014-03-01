@@ -6,6 +6,9 @@
 // Team Krostin Kobra                                                        //
 //***************************************************************************//
 
+#include "cube.h"
+#include "unit.h"
+
 Cube::Cube() 
 {
   // construct a cube with units on each side
