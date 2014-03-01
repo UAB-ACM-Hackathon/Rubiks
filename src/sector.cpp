@@ -11,10 +11,11 @@
 using namespace std;
 
 // default constructor
-Sector::Sector() { }
+Sector::Sector() { /* do nothing */ }
 
 /*
- * Sector constructor initializes with a set of faces and an orientation
+ * Sector constructor initializes with a set of indices and an orientation.
+ * The position is -1 for inner sectors, 0-5 for outer sectors.
  */
 Sector::Sector( int *cube_indices, int orientation, int position)
 {
