@@ -85,15 +85,6 @@ void Sector::display_faces()
   cout << endl;
 }
 
-int main() 
-{
-  int x [8] = {0, 1, 2, 3, 4, 5, 6, 7};
-  Sector sector(x, 1);
-  sector.display_faces();
-  sector.rotate(1);
-  sector.display_faces();
-}
-
 //***************************************************************************//
 // END OF FILE / sector.cpp                                                  //
 //***************************************************************************//
