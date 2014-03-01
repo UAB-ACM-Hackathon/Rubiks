@@ -14,6 +14,7 @@ class Unit
  	int faces[6];
  	
  public:
+	Unit();
  	Unit( int, int, int, int, int, int );
  	~Unit();
 };

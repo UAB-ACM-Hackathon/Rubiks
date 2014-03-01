@@ -7,6 +7,8 @@
 
 #include "unit.h"
 
+Unit::Unit() { }
+
 Unit::Unit( int a, int b, int c, int d, int e, int f )
 {
 	faces[0] = a;

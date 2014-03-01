@@ -134,10 +134,10 @@ void display()
 
 void timer( int value )
 {
-	if ( keys[GLUT_KEY_RIGHT] ) { rotx += 15; if ( rotx > 360 ) rotx -= 360; }
-	if ( keys[GLUT_KEY_LEFT]  ) { rotx -= 15; if ( rotx < 360 ) rotx += 360; }
-	if ( keys[GLUT_KEY_UP]    ) { roty += 15; if ( roty > 360 ) rotx -= 360; }
-	if ( keys[GLUT_KEY_DOWN]  ) { roty -= 15; if ( roty < 360 ) rotx += 360; }
+	if ( keys[GLUT_KEY_RIGHT] ) { roty += 3; if ( roty > 360 ) roty -= 360; }
+	if ( keys[GLUT_KEY_LEFT]  ) { roty -= 3; if ( roty < 360 ) roty += 360; }
+	if ( keys[GLUT_KEY_UP]    ) { rotx += 3; if ( rotx > 360 ) rotx -= 360; }
+	if ( keys[GLUT_KEY_DOWN]  ) { rotx -= 3; if ( rotx < 360 ) rotx += 360; }
 
   glutTimerFunc( 25, timer, 0 );
   glutPostRedisplay();

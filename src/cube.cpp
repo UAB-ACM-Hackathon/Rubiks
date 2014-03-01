@@ -11,7 +11,8 @@
 Cube::Cube() 
 {
   // add each unit
-  units[0][0][0] = new Unit( 0, 0, 0, 0, 0, 0 );
+	Unit a( 0, 0, 0, 0, 0, 0 ); units[0][0][0] = a;
+	Unit b( 0, 0, 0, 0, 0, 1 ); units[0][0][1] = b;
 }
 
 Cube::~Cube() { /* unused */ }
