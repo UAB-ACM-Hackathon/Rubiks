@@ -10,6 +10,9 @@
 
 using namespace std;
 
+// default constructor
+Sector::Sector() { }
+
 /*
  * Sector constructor initializes with a set of faces and an orientation
  */
@@ -54,6 +57,8 @@ void Sector::cw_rotate(Unit *units)
   }
   
   units[0] = t0; units[1] = t1;
+  
+  rotate_units(units, 0);
 }
 
 /*
@@ -73,6 +78,19 @@ void Sector::ccw_rotate(Unit *units)
   }
   
   units[7] = t0; units[6] = t1;
+  
+  rotate_units(units, 1);
+}
+
+/*
+ * Call the rotate function on every unit to update its status.
+ */
+void Sector::rotate_units(Unit *units, int direction)
+{
+  for (int i=0; i<9; i++)
+  {
+    units[i].rotate(orientation, direction);
+  }
 }
 
 // displays the current configuration of the faces array
@@ -94,6 +112,7 @@ int main()
   sector.print_indices();
 }
 */
+
 
 //***************************************************************************//
 // END OF FILE / sector.cpp                                                  //
