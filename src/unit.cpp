@@ -1,25 +1,22 @@
 //***************************************************************************//
-// Linker definition file for the unit class.                                //
+// Definition of the unit class which translates faces and tracks them.      //
 //                                                                           //
-// Filename: unit.h                                                          //
+// Filename: unit.cpp                                                        //
 // Team Krostin Kobra                                                        //
 //***************************************************************************//
 
-#ifndef L_UNIT_H
-#define L_UNIT_H
-
-class Unit
+Unit::Unit( int a, int b, int c, int d, int e, int f )
 {
- private:
- 	int[6] faces;
- 	
- public:
- 	Unit( int, int, int, int, int, int );
- 	~Unit();
+	faces[0] = a;
+	faces[1] = b;
+	faces[2] = c;
+	faces[3] = d;
+	faces[4] = e;
+	faces[5] = f;
 }
 
-#endif
+Unit::~Unit() { /* unused */ }
 
 //***************************************************************************//
-// END OF FILE / unit.h                                                      //
+// END OF FILE / unit.cpp                                                    //
 //***************************************************************************//
