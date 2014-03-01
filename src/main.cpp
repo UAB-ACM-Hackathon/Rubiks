@@ -45,6 +45,7 @@ void gfxinit()
   transx = 0.0; transy = 0.0; transz = 0.0;
 
   keys = new bool[256];
+	for ( int i = 0; i < 256; i++ ) keys[i] = false;
 }
 
 void reshape( int w, int h )
@@ -65,28 +66,42 @@ void reshape( int w, int h )
   glLoadIdentity();
 }
 
-void keyboard( unsigned char key, int x, int y )
+void keyboardDown( unsigned char key, int x, int y )
 {
+	if ( (int) key > 255 ) return;
+
+	// 1-9 select sector ( 49-57 as ints)
+
   switch ( key )
   {
-  case 27: exit( 1 ); break;
-  default:            break;
+  case 27: exit( 1 ); 			 break;
+  default: keys[(int) key] = true; break;
   }
 
-	cout << "normal: " << key << endl;
+  glutPostRedisplay();
+}
 
+void keyboardUp ( unsigned char key, int x, int y )
+{
+	if ( (int) key > 255 ) return;
+
+  keys[(int) key] = false;
   glutPostRedisplay();
 }
 
 void specialDown( int key, int x, int y )
 {
-	cout << "special: " << key << endl;
+	if ( key > 255 ) return;
 
+	keys[key] = true;
   glutPostRedisplay();
 }
 
 void specialUp( int key, int x, int y )
 {
+	if ( key > 255 ) return;
+
+	keys[key] = false;
   glutPostRedisplay();
 }
 
@@ -96,25 +111,8 @@ void display()
 
   glMatrixMode(GL_MODELVIEW);
   glPushMatrix();
-/*
-  glScalef( zoom, zoom, zoom );
-  glRotatef( rotx, 1.0, 0.0, 0.0 );
-  glRotatef( roty, 0.0, 1.0, 0.0 );
-  glRotatef( rotz, 0.0, 0.0, 1.0 );
-*/
 
   // draw objects
-
-  glBegin( GL_TRIANGLES );
-
-  glColor3f( 1, 0, 0 );
-  glVertex3f( 0., 0., 0. ); glVertex3f( .5, 0., 1. ); glVertex3f( 1., 0., 0. );
-  glColor3f( 0, 1, 0 );
-  glVertex3f( 0., 0., 0. ); glVertex3f( 1., 0., 0. ); glVertex3f( .5, .5, 0. );
-  glColor3f( 0, 0, 1 );
-  glVertex3f( 0., 0., 0. ); glVertex3f( .5, .5, 0. ); glVertex3f( .5, 0., 1. );
-  glColor3f( 1, 1, 0 );
-  glVertex3f( 1., 0., 0. ); glVertex3f( .5, 0., 1. ); glVertex3f( .5, .5, 0. );
 
   glEnd();
 
@@ -143,7 +141,8 @@ int main( int argc, char **argv )
   gfxinit();
   glutDisplayFunc( display );
   glutReshapeFunc( reshape );
-  glutKeyboardFunc( keyboard );
+  glutKeyboardFunc( keyboardDown );
+	glutKeyboardUpFunc( keyboardUp );
   glutSpecialFunc( specialDown );
   glutSpecialUpFunc( specialUp );
   glutTimerFunc( 25, timer, 0 );
