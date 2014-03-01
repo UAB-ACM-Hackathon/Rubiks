@@ -7,6 +7,7 @@
 //***************************************************************************//
 
 #include "cube.h"
+#include <iostream>
 
 Cube::Cube() 
 {
@@ -44,7 +45,33 @@ Cube::~Cube() { /* unused */ }
 
 void Cube::draw()
 {
-	
+	float x, y, z, r, g, b;
+
+	for ( int i = 0; i < 3; i++ )
+	{
+		for ( int j = 0; j < 3; j++ )
+		{
+			for ( int k = 0; k < 3; k++ )
+			{
+				glPushMatrix();
+
+				r = rand() / (float) RAND_MAX;
+				g = rand() / (float) RAND_MAX;
+				b = rand() / (float) RAND_MAX;
+
+				glColor3f( r, g, b );
+
+				x = 2.2 * ( (float)i-1 );
+				y = 2.2 * ( (float)j-1 );
+				z = 2.2 * ( (float)k-1 );
+
+				glTranslatef( x, y, z );
+				units[i][j][k].draw();
+
+  			glPopMatrix();
+			}
+		}
+	}
 }
 
 //***************************************************************************//

@@ -20,12 +20,11 @@ using std::string;
 #include <assert.h>
 #define _USE_MATH_DEFINES
 
-#include "mesh.h"
+#include "cube.h"
 
 GLfloat zoom, rotx, roty, rotz, transx, transy, transz;
 bool* keys;
-// Cube cube;
-Mesh test_cube( "meshes/block.off" );
+Cube cube;
 
 // viewport matrix
 GLint view[4]  = { 0, 0, 750, 750 };
@@ -122,7 +121,7 @@ void display()
 	glRotatef( rotz, 0.0, 0.0, 1.0 );
 
   // draw objects
-	test_cube.draw();
+	cube.draw();
 
   glEnd();
 
