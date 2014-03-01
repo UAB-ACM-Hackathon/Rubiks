@@ -1,26 +1,20 @@
 //***************************************************************************//
-// Linker definition file for the cube class.                                //
+// Linker definition file for the unit class.                                //
 //                                                                           //
-// Filename: cube.h                                                          //
+// Filename: unit.h                                                          //
 // Team Krostin Kobra                                                        //
 //***************************************************************************//
 
-#ifndef L_CUBE_H
-#define L_CUBE_H
+#ifndef L_UNIT_H
+#define L_UNIT_H
 
-class Cube
+class Unit
 {
- private:
- 	Unit[9][9][9] units;
- 	
- public:
- 	Cube();
- 	~Cube();
- 	
-};
+
+}
 
 #endif
 
 //***************************************************************************//
-// END OF FILE / cube.h                                                      //
+// END OF FILE / unit.h                                                      //
 //***************************************************************************//
