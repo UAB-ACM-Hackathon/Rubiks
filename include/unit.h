@@ -11,12 +11,12 @@
 class Unit
 {
  private:
- 	int[6] faces;
+ 	int faces[6];
  	
  public:
  	Unit( int, int, int, int, int, int );
  	~Unit();
-}
+};
 
 #endif
 
