@@ -29,6 +29,7 @@ class Unit
  	Unit( int, int, int, int, int, int );
  	~Unit();
 	void draw();
+	void rotate( int, int );
 };
 
 #endif

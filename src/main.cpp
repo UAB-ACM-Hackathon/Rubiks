@@ -79,8 +79,8 @@ void keyboardDown( unsigned char key, int x, int y )
 
   switch ( key )
   {
-  case 27: exit( 0 ); 			 break;
-  default: keys[(int) key] = true; break;
+  case 27: exit( 0 ); 			 			 	break;
+  default: keys[(int) key] = true; 	break;
   }
 
   glutPostRedisplay();

@@ -45,7 +45,7 @@ Cube::~Cube() { /* unused */ }
 
 void Cube::draw()
 {
-	float x, y, z, r, g, b;
+	float x, y, z;
 
 	for ( int i = 0; i < 3; i++ )
 	{
@@ -54,12 +54,6 @@ void Cube::draw()
 			for ( int k = 0; k < 3; k++ )
 			{
 				glPushMatrix();
-
-				r = rand() / (float) RAND_MAX;
-				g = rand() / (float) RAND_MAX;
-				b = rand() / (float) RAND_MAX;
-
-				glColor3f( r, g, b );
 
 				x = 2.2 * ( (float)i-1 );
 				y = 2.2 * ( (float)j-1 );
