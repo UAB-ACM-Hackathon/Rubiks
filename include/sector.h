@@ -10,7 +10,13 @@
 
 class Sector
 {
-
+  private:
+    int *faces;                           // list of faces
+    int orientation;                      // orientation of the sector
+    
+  public:
+    Sector( int *faces, int orientation); // constructor
+    rotate(int direction);                // simulate a rotation CW||CCW
 };
 
 #endif
