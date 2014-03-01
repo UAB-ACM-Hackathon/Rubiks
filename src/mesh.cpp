@@ -46,7 +46,6 @@ Mesh::Mesh( string filename )
   for (int i = 0; i < nPt; i++)       // translate by mean and calc. max value
   {
     pt[i][0] -= x; pt[i][1] -= y;
-    if ( filename != "meshes/hemisphere.off" ) pt[i][0] -= z;
     mx = fmax(mx, fmax(fabs(pt[i][0]), fmax(fabs(pt[i][1]), fabs(pt[i][2]))));
   }
 

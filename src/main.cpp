@@ -20,9 +20,12 @@ using std::string;
 #include <assert.h>
 #define _USE_MATH_DEFINES
 
+#include "mesh.h"
+
 GLfloat zoom, rotx, roty, rotz, transx, transy, transz;
 bool* keys;
 // Cube cube;
+Mesh test_cube( "meshes/block.off" );
 
 // viewport matrix
 GLint view[4]  = { 0, 0, 750, 750 };
@@ -40,7 +43,7 @@ void gfxinit()
 
   glShadeModel( GL_SMOOTH );
 
-  zoom = 1.0;
+  zoom = 0.25;
   rotx = 0.0; roty = 0.0; rotz = 0.0;
   transx = 0.0; transy = 0.0; transz = 0.0;
 
@@ -74,7 +77,7 @@ void keyboardDown( unsigned char key, int x, int y )
 
   switch ( key )
   {
-  case 27: exit( 1 ); 			 break;
+  case 27: exit( 0 ); 			 break;
   default: keys[(int) key] = true; break;
   }
 
@@ -112,7 +115,10 @@ void display()
   glMatrixMode(GL_MODELVIEW);
   glPushMatrix();
 
+	glScalef( zoom, zoom, zoom );
+
   // draw objects
+	test_cube.draw();
 
   glEnd();
 
