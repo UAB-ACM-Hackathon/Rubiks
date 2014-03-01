@@ -16,7 +16,7 @@ class Sector
     
   public:
     Sector( int *faces, int orientation); // constructor
-    rotate(int direction);                // simulate a rotation CW||CCW
+    void rotate(int direction);                // simulate a rotation CW||CCW
 };
 
 #endif
