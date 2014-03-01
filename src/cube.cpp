@@ -11,33 +11,7 @@
 Cube::Cube() 
 {
   // add each unit
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][0][0] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][0][1] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][0][2] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][1][0] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][1][1] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][1][2] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][2][0] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][2][1] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][2][2] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][0][0] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][0][1] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][0][2] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][1][0] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][1][1] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][1][2] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][2][0] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][2][1] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][2][2] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][0][0] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][0][1] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][0][2] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][1][0] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][1][1] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][1][2] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][2][0] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][2][1] = unit;
-  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][2][2] = unit;
+  units[0][0][0] = new Unit( 0, 0, 0, 0, 0, 0 );
 }
 
 Cube::~Cube() { /* unused */ }

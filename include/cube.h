@@ -13,7 +13,7 @@
 class Cube
 {
  private:
- 	Unit[3][3][3] units;
+ 	Unit units[3][3][3];
  	
  public:
  	Cube();
