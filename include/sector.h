@@ -16,10 +16,7 @@ class Sector
     
   public:
     Sector( int *faces, int orientation); // constructor
-    void rotate(int direction);           // simulate a rotation CW||CCW
-    void cw_rotate();                     // perform rotation CW
-    void ccw_rotate();                    // perform rotation CCW
-    void display_faces();                 // print faces array
+    void rotate(int direction);                // simulate a rotation CW||CCW
 };
 
 #endif

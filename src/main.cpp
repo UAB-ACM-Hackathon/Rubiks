@@ -20,6 +20,7 @@ using std::string;
 #include <assert.h>
 #define _USE_MATH_DEFINES
 
+#include "globals.h"
 #include "cube.h"
 
 GLfloat zoom, rotx, roty, rotz, transx, transy, transz;
@@ -31,6 +32,8 @@ GLint view[4]  = { 0, 0, 750, 750 };
 
 void gfxinit()
 {
+	init_colors();
+
   glEnable( GL_DEPTH_TEST );
   glClearColor( 0.0, 0.0, 0.0, 1.0 );
   glEnable( GL_LINE_SMOOTH );
