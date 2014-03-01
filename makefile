@@ -8,3 +8,6 @@ make:
 	
 add:
 	git add README.md LICENSE makefile src/*.cpp include/*.h
+	
+push:
+	git push -u origin master
