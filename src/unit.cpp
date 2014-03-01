@@ -26,6 +26,15 @@ Unit::~Unit() { /* unused */ }
 
 void Unit::draw()
 {
+	for ( int i = 0; i < 6; i++ )
+	{
+		glPushMatrix();
+		
+		
+		
+		glPopMatrix();
+	}
+	
 	mesh.draw();
 }
 

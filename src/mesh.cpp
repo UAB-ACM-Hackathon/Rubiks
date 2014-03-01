@@ -122,3 +122,14 @@ void Mesh::draw()
     glEnd();
   }
 }
+
+void Mesh::draw( int in )
+{
+	glBegin( GL_POLYGON );
+		for ( int i = 0; i < degFace[in]; i++ )
+		{
+			glNormal3fv( normal[face[in][i]] );
+			glVertex3fv( pt[face[in][i]] );
+		}
+	glEnd();
+}

@@ -22,6 +22,7 @@ class Mesh
          * Draw mesh
         **/
         void draw();
+        void draw( int );
 
     private:
         int nPt, nFace, *degFace, **face;
