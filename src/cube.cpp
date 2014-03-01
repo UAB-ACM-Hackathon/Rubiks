@@ -6,22 +6,46 @@
 // Team Krostin Kobra                                                        //
 //***************************************************************************//
 
+#include "cube.h"
+
 Cube::Cube() 
 {
-  // construct a cube with units on each side
-  for ( int i = 0; i < 9; i++ ) 
-  {
-  	for ( int j = 0; j < 9; j++ )
-  	{
-  		for ( int k = 0; k < 9; k++ )
-  		{
-  			
-  		}
-  	}
-  }
+  // add each unit
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][0][0] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][0][1] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][0][2] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][1][0] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][1][1] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][1][2] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][2][0] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][2][1] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[0][2][2] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][0][0] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][0][1] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][0][2] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][1][0] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][1][1] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][1][2] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][2][0] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][2][1] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[1][2][2] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][0][0] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][0][1] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][0][2] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][1][0] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][1][1] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][1][2] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][2][0] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][2][1] = unit;
+  Unit unit( 0, 0, 0, 0, 0, 0 ); units[2][2][2] = unit;
 }
 
 Cube::~Cube() { /* unused */ }
+
+void Cube::draw()
+{
+	
+}
 
 //***************************************************************************//
 // END OF FILE / cube.cpp                                                    //

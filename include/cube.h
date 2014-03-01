@@ -8,15 +8,17 @@
 #ifndef L_CUBE_H
 #define L_CUBE_H
 
+#include "unit.h"
+
 class Cube
 {
  private:
- 	Unit[9][9][9] units;
+ 	Unit[3][3][3] units;
  	
  public:
  	Cube();
  	~Cube();
- 	
+ 	void draw();
 };
 
 #endif
