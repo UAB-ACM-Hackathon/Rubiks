@@ -49,7 +49,7 @@ void gfxinit()
   glShadeModel( GL_SMOOTH );
 
   zoom = 0.25;
-  rotx = 0.0; roty = 0.0; rotz = 0.0;
+  rotx = 10.0; roty = -10.0; rotz = 0.0;
   transx = 0.0; transy = 0.0; transz = 0.0;
 
   keys = new bool[256];
@@ -221,10 +221,10 @@ void timer( int value )
     if       ( keys[GLUT_KEY_LEFT] ) cube.rotate_sector( 9, 0 );
     else if ( keys[GLUT_KEY_RIGHT] ) cube.rotate_sector( 9, 1 );
   }
-  else if ( keys[GLUT_KEY_UP] ) { rotx += 3; if ( rotx > 360 ) rotx -= 360; }
-  else if ( keys[GLUT_KEY_DOWN] ) { rotx -= 3; if ( rotx < 360 ) rotx += 360; }
-  else if ( keys[GLUT_KEY_LEFT] ) { roty -= 3; if ( roty < 360 ) roty += 360; }
-  else if ( keys[GLUT_KEY_RIGHT] ) { roty += 3; if ( roty > 360 ) roty -= 360; }
+  else if ( keys[GLUT_KEY_UP] ) { rotx -= 5; if ( rotx > 360 ) rotx -= 360; }
+  else if ( keys[GLUT_KEY_DOWN] ) { rotx += 5; if ( rotx < 360 ) rotx += 360; }
+  else if ( keys[GLUT_KEY_LEFT] ) { roty -= 5; if ( roty < 360 ) roty += 360; }
+  else if ( keys[GLUT_KEY_RIGHT] ) { roty += 5; if ( roty > 360 ) roty -= 360; }
 
 	keys[GLUT_KEY_UP] 	 = false;
 	keys[GLUT_KEY_DOWN]  = false;
