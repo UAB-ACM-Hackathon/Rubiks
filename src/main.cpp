@@ -172,7 +172,7 @@ void timer( int value )
 	{
 		if ( initialize <= 0 )
 		{
-			initialize = 2;
+			initialize = 20;
 		}
 	}
   else if ( keys[49] )
