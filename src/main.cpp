@@ -92,7 +92,7 @@ void keyboardDown( unsigned char key, int x, int y )
   case 114: rotx = 10.0; roty = -10.0; break;
   default: keys[(int) key] = true; 	break;
   }
-
+  
   glutPostRedisplay();
 }
 
@@ -171,11 +171,19 @@ void timer( int value )
 
   if ( keys[115] )
 	{
-		if ( initialize <= 0 )
+		if ( initialize < 0 )
 		{
 			initialize = 20;
 		}
 	}
+	if ( keys[107] )
+	{
+		if ( initialize < 0 )
+		{
+			initialize = 3;
+		}
+	}
+	
   else if ( keys[49] )
   {
     if       ( keys[GLUT_KEY_UP] ) cube.rotate_sector( 1, 0 );
