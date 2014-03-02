@@ -47,11 +47,11 @@ void Unit::rotate( int orientation, int direction )
 	case 0:		// x-axis
 		if ( direction == 0 )
 		{
-			faces[2] = c[5]; faces[3] = c[4]; faces[4] = c[2]; faces[5] = c[3];
+			faces[2] = c[4]; faces[3] = c[5]; faces[4] = c[3]; faces[5] = c[2];
 		}
 		else
 		{
-			faces[2] = c[4]; faces[3] = c[5]; faces[4] = c[3]; faces[5] = c[2];
+			faces[2] = c[5]; faces[3] = c[4]; faces[4] = c[2]; faces[5] = c[3];
 		}
 		break;
 	case 1:		// y-axis
