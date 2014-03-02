@@ -25,7 +25,9 @@ using std::string;
 #include "sector.h"
 
 GLfloat zoom, rotx, roty, rotz, transx, transy, transz;
+bool initialize;
 bool* keys;
+bool won;
 Cube cube;
 
 // viewport matrix
@@ -135,6 +137,28 @@ void display()
   glutSwapBuffers();
 }
 
+// mix the cube when s is pressed
+void mix_up()
+{
+	cout << "Mixing the cube" << endl;
+	int last_slice, last_dir;
+	int slice, direction;
+	last_slice = 0; last_dir = 0;
+	
+	// choose a slice and rotate in a direction
+	for ( int i = 0; i < 28; i++ )
+	{
+		do {
+			direction = (double)(rand() / (double)RAND_MAX) > 0.5f ? 1 : 0;
+			slice = (int)(9*((double)rand() / (double)RAND_MAX)) + 1;
+			// cannot reverse last move
+		} while ( slice == last_slice && direction == last_dir );
+		cube.rotate_sector( slice, direction );
+		last_slice = slice;
+		last_dir   = ( direction % 2 ) + 1;
+	}
+}
+
 void timer( int value )
 {
 	if ( cube.is_animating() )
@@ -144,7 +168,16 @@ void timer( int value )
 		return;
 	}
 
-  if ( keys[49] )
+  if ( keys[115] )
+	{
+		cout << "starting" << endl;
+		if ( initialize )
+		{
+			mix_up();
+			initialize = false;
+		}
+	}
+  else if ( keys[49] )
   {
     if       ( keys[GLUT_KEY_UP] ) cube.rotate_sector( 1, 0 );
     else if ( keys[GLUT_KEY_DOWN] ) cube.rotate_sector( 1, 1 );
