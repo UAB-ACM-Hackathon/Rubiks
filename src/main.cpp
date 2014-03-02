@@ -170,7 +170,6 @@ void timer( int value )
 
   if ( keys[115] )
 	{
-		cout << "starting" << endl;
 		if ( initialize )
 		{
 			mix_up();
@@ -231,6 +230,14 @@ void timer( int value )
 	keys[GLUT_KEY_DOWN]  = false;
 	keys[GLUT_KEY_LEFT]  = false;
 	keys[GLUT_KEY_RIGHT] = false;
+	
+	cout << "Win? " << (cube.win_check() == true ? "true" : "false" ) << endl;
+	
+	if ( won || ( initialize == false && cube.win_check() ) ) 
+	{
+		cout << "Winner!!" << endl;
+		won = true;
+	}
 
   glutTimerFunc( 25, timer, 0 );
   glutPostRedisplay();
@@ -239,6 +246,9 @@ void timer( int value )
 int main( int argc, char **argv )
 {
   srand( time( 0 ) ); // init pseudo-RNG
+  
+  initialize = true;
+  won = false;
 
   glutInit( &argc, argv );
   glutInitDisplayMode( GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH );
