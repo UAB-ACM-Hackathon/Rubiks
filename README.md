@@ -26,13 +26,14 @@ selecting a segement of the cube is a number key [1-9].
 up and right are clockwise rotation
 down and left are counterclockwise rotation.
 
-*UD keys only work with [1-3] 
+*UD keys only work with [1-3] \
 *RL keys only work with [4-9] 
 
 =======
-team Krostin Kobra
-
-Anders Borg, Evan Bryant, Stephen Frees
-
 > The program was built and tested using *nix computers and is not guaranteed to work 
 > on either macintosh, windows, or linux distributions other than debian based linux.
+
+team Krostin Kobra \
+Anders Borg, Evan Bryant, Stephen Frees
+
+
