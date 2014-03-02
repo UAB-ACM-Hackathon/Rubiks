@@ -25,10 +25,13 @@ using std::string;
 #include "sector.h"
 
 GLfloat zoom, rotx, roty, rotz, transx, transy, transz;
-bool initialize;
 bool* keys;
 bool won;
 Cube cube;
+
+int last_slice, last_dir;
+int slice, direction;
+int initialize;
 
 // viewport matrix
 GLint view[4]  = { 0, 0, 750, 750 };
@@ -51,6 +54,9 @@ void gfxinit()
   zoom = 0.25;
   rotx = 10.0; roty = -10.0; rotz = 0.0;
   transx = 0.0; transy = 0.0; transz = 0.0;
+
+	initialize = -1;
+  won = false;
 
   keys = new bool[256];
 	for ( int i = 0; i < 256; i++ ) keys[i] = false;
@@ -146,19 +152,17 @@ void mix_up()
 	last_slice = 0; last_dir = 0;
 	
 	// choose a slice and rotate in a direction
-	for ( int i = 0; i < 2; i++ )
+	for ( int i = 0; i < 10; i++ )
 	{
-		if ( cube.is_animating() ) 
-		{
-		  i--;
-		  continue;
-		}
 		do {
 			direction = (double)(rand() / (double)RAND_MAX) > 0.5f ? 1 : 0;
 			slice = (int)(9*((double)rand() / (double)RAND_MAX)) + 1;
 			// cannot reverse last move
 		} while ( slice == last_slice && direction == last_dir );
 		cube.rotate_sector( slice, direction );
+
+		while ( cube.is_animating() ) { cout << "stuck forever" << endl; }
+
 		last_slice = slice;
 		last_dir   = ( direction % 2 ) + 1;
 	}
@@ -172,13 +176,26 @@ void timer( int value )
 	  glutPostRedisplay();
 		return;
 	}
+	else if ( initialize > 0 )
+	{
+		do {
+			direction = (double)(rand() / (double)RAND_MAX) > 0.5f ? 1 : 0;
+			slice = (int)(9*((double)rand() / (double)RAND_MAX)) + 1;
+			// cannot reverse last move
+		} while ( slice == last_slice && direction == last_dir );
+		cube.rotate_sector( slice, direction );
+
+		last_slice = slice;
+		last_dir   = ( direction % 2 ) + 1;
+
+		initialize--;
+	}
 
   if ( keys[115] )
 	{
-		if ( initialize )
+		if ( initialize <= 0 )
 		{
-			mix_up();
-			initialize = false;
+			initialize = 10;
 		}
 	}
   else if ( keys[49] )
@@ -250,9 +267,6 @@ int main( int argc, char **argv )
 {
   srand( time( 0 ) ); // init pseudo-RNG
   
-  initialize = true;
-  won = false;
-
   glutInit( &argc, argv );
   glutInitDisplayMode( GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH );
   glutInitWindowSize( 750, 750 );

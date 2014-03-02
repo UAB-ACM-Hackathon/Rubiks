@@ -149,8 +149,6 @@ void Cube::rotate_sector( int i, int direction )
 
 void Cube::end_animation()
 {
-	anim_lock = false;
-
 	Unit to_rotate[9];
 	for ( int i = 0; i < 9; i++ )
 	{
@@ -165,6 +163,8 @@ void Cube::end_animation()
 		int* u = index( anim_seq[i] );
 		units[u[0]][u[1]][u[2]] = new_units[i];
 	}
+
+	anim_lock = false;
 }
 
 bool Cube::is_animating()
