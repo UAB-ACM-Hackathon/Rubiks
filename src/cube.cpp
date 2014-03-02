@@ -60,6 +60,8 @@ Cube::Cube()
 	Sector s7( seq7, 2,  4 ); sectors[6] = s7;
 	Sector s8( seq8, 2, -1 ); sectors[7] = s8;
 	Sector s9( seq9, 2,  5 ); sectors[8] = s9;
+
+	anim_lock = false;
 }
 
 Cube::~Cube() { /* unused */ }
@@ -80,13 +82,40 @@ void Cube::draw()
 				y = 2.2 * ( (float)j-1 );
 				z = 2.2 * ( (float)k-1 );
 
+				if ( anim_lock && in_sequence( i, j, k, anim_seq ) )
+				{
+					if ( anim_axis == 0 ) glRotatef( rot, 1.0, 0.0, 0.0 );
+					if ( anim_axis == 1 ) glRotatef( rot, 0.0, 0.0, 1.0 );
+					if ( anim_axis == 2 ) glRotatef( rot, 0.0, 1.0, 0.0 );
+				}
+
 				glTranslatef( x, y, z );
+
 				units[i][j][k].draw();
 
   			glPopMatrix();
 			}
 		}
 	}
+
+	cout << rot << endl;
+	
+	if ( anim_lock )
+	{
+		if ( anim_dir == 0 ) rot -= 5; else rot += 5;
+		if ( rot >= 90 || rot <= -90 ) end_animation();
+	}
+}
+
+bool Cube::in_sequence( int i, int j, int k, int* seq )
+{
+	for ( int n = 0; n < 9; n++ )
+	{
+		int* u = index( seq[n] );
+		if ( u[0] == i && u[1] == j && u[2] == k ) return true;
+	}
+
+	return false;
 }
 
 int* Cube::index( int ptr )
@@ -104,24 +133,45 @@ int* Cube::index( int ptr )
 
 void Cube::rotate_sector( int i, int direction )
 {
-	i--;
+	anim_lock = true;
+	sector = sectors[i-1];
+	anim_axis = sector.get_axis();
+	anim_dir = direction;
+	
+	int* copy = sector.get_sequence();
+	anim_seq = new int[9];
 
-	int* sequence = sectors[i].get_sequence();
+	for ( int n = 0; n < 9; n++ )
+	{
+		anim_seq[n] = copy[n];
+	}
+
+	rot = 0.0;
+}
+
+void Cube::end_animation()
+{
+	anim_lock = false;
 
 	Unit to_rotate[9];
 	for ( int i = 0; i < 9; i++ )
 	{
-		int* u = index( sequence[i] );
+		int* u = index( anim_seq[i] );
 		to_rotate[i] = units[u[0]][u[1]][u[2]];
 	}	
 
-	Unit* new_units = sectors[i].rotate( to_rotate, direction );
+	Unit* new_units = sector.rotate( to_rotate, anim_dir );
 
 	for ( int i = 0; i < 9; i++ )
 	{
-		int* u = index( sequence[i] );
+		int* u = index( anim_seq[i] );
 		units[u[0]][u[1]][u[2]] = new_units[i];
 	}
+}
+
+bool Cube::is_animating()
+{
+	return anim_lock;
 }
 
 bool Cube::win_check()

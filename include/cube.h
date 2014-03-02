@@ -24,6 +24,11 @@ class Cube
  	Unit units[3][3][3];
 	Sector sectors[9];
 	int* index( int );
+	bool anim_lock;
+	int anim_axis, anim_dir;
+	int* anim_seq;
+	Sector sector;
+	GLfloat rot;
  	
  public:
  	Cube();
@@ -31,6 +36,9 @@ class Cube
  	void draw();
 	void rotate_sector( int, int );
 	bool win_check();
+	bool is_animating();
+	bool in_sequence( int, int, int, int* );
+	void end_animation();
 };
 
 #endif

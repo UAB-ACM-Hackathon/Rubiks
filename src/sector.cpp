@@ -123,6 +123,11 @@ void Sector::print_sequence()
 	for ( int i = 0; i < 9; i++ ) { cout << this->cube_indices[i] << endl; }
 }
 
+int Sector::get_axis()
+{
+	return orientation;
+}
+
 //***************************************************************************//
 // END OF FILE / sector.cpp                                                  //
 //***************************************************************************//

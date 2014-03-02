@@ -28,6 +28,7 @@ class Sector
 		int* get_sequence();
 		int get_position();
 		void print_sequence();
+		int get_axis();
 };
 
 #endif

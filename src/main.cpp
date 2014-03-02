@@ -25,9 +25,7 @@ using std::string;
 #include "sector.h"
 
 GLfloat zoom, rotx, roty, rotz, transx, transy, transz;
-bool initialize;
 bool* keys;
-bool won;
 Cube cube;
 
 // viewport matrix
@@ -137,39 +135,16 @@ void display()
   glutSwapBuffers();
 }
 
-// mix the cube when s is pressed
-void mix_up()
-{
-	cout << "Mixing the cube" << endl;
-	int last_slice, last_dir;
-	int slice, direction;
-	last_slice = 0; last_dir = 0;
-	
-	// choose a slice and rotate in a direction
-	for ( int i = 0; i < 1; i++ )
-	{
-		do {
-			direction = (double)(rand() / (double)RAND_MAX) > 0.5f ? 1 : 0;
-			slice = (int)(9*((double)rand() / (double)RAND_MAX)) + 1;
-			// cannot reverse last move
-		} while ( slice == last_slice && direction == last_dir );
-		cube.rotate_sector( slice, direction );
-		last_slice = slice;
-		last_dir   = ( direction % 2 ) + 1;
-	}
-}
-
 void timer( int value )
 {
-	if ( keys[115] )
+	if ( cube.is_animating() )
 	{
-		if ( initialize )
-		{
-			mix_up();
-			initialize = false;
-		}
+		glutTimerFunc( 25, timer, 0 );
+	  glutPostRedisplay();
+		return;
 	}
-  else if ( keys[49] )
+
+  if ( keys[49] )
   {
     if       ( keys[GLUT_KEY_UP] ) cube.rotate_sector( 1, 0 );
     else if ( keys[GLUT_KEY_DOWN] ) cube.rotate_sector( 1, 1 );
@@ -223,15 +198,7 @@ void timer( int value )
 	keys[GLUT_KEY_DOWN]  = false;
 	keys[GLUT_KEY_LEFT]  = false;
 	keys[GLUT_KEY_RIGHT] = false;
-	
-	cout << "Win? " << (cube.win_check() == true ? "true" : "false" ) << endl;
-	
-	if ( won || ( initialize == false && cube.win_check() ) ) 
-	{
-		cout << "Winner!!" << endl;
-		won = true;
-	}
-	
+
   glutTimerFunc( 25, timer, 0 );
   glutPostRedisplay();
 }
@@ -239,8 +206,6 @@ void timer( int value )
 int main( int argc, char **argv )
 {
   srand( time( 0 ) ); // init pseudo-RNG
-  initialize = true;
-  won = false;
 
   glutInit( &argc, argv );
   glutInitDisplayMode( GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH );
