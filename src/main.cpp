@@ -143,33 +143,10 @@ void display()
   glutSwapBuffers();
 }
 
-// mix the cube when s is pressed
-void mix_up()
-{
-	cout << "Mixing the cube" << endl;
-	int last_slice, last_dir;
-	int slice, direction;
-	last_slice = 0; last_dir = 0;
-	
-	// choose a slice and rotate in a direction
-	for ( int i = 0; i < 10; i++ )
-	{
-		do {
-			direction = (double)(rand() / (double)RAND_MAX) > 0.5f ? 1 : 0;
-			slice = (int)(9*((double)rand() / (double)RAND_MAX)) + 1;
-			// cannot reverse last move
-		} while ( slice == last_slice && direction == last_dir );
-		cube.rotate_sector( slice, direction );
-
-		while ( cube.is_animating() ) { cout << "stuck forever" << endl; }
-
-		last_slice = slice;
-		last_dir   = ( direction % 2 ) + 1;
-	}
-}
-
 void timer( int value )
 {
+	
+
 	if ( cube.is_animating() )
 	{
 		glutTimerFunc( 25, timer, 0 );
@@ -183,7 +160,7 @@ void timer( int value )
 			slice = (int)(9*((double)rand() / (double)RAND_MAX)) + 1;
 			// cannot reverse last move
 		} while ( slice == last_slice && direction == last_dir );
-		cube.rotate_sector( slice, direction );
+		cube.rotate_sector( slice, direction, true );
 
 		last_slice = slice;
 		last_dir   = ( direction % 2 ) + 1;
@@ -195,7 +172,7 @@ void timer( int value )
 	{
 		if ( initialize <= 0 )
 		{
-			initialize = 10;
+			initialize = 2;
 		}
 	}
   else if ( keys[49] )

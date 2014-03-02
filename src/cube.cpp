@@ -100,7 +100,8 @@ void Cube::draw()
 	
 	if ( anim_lock )
 	{
-		if ( anim_dir == 0 ) rot -= 5; else rot += 5;
+		int inc = ( anim_fast ? 15 : 5 );
+		if ( anim_dir == 0 ) rot -= inc; else rot += inc;
 		if ( rot >= 90 || rot <= -90 ) end_animation();
 	}
 }
@@ -131,10 +132,16 @@ int* Cube::index( int ptr )
 
 void Cube::rotate_sector( int i, int direction )
 {
+	rotate_sector( i, direction, false );
+}
+
+void Cube::rotate_sector( int i, int direction, bool fast )
+{
 	anim_lock = true;
 	sector = sectors[i-1];
 	anim_axis = sector.get_axis();
 	anim_dir = direction;
+	anim_fast = fast;
 	
 	int* copy = sector.get_sequence();
 	anim_seq = new int[9];
