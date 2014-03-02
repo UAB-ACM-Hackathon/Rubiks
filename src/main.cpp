@@ -27,6 +27,7 @@ using std::string;
 GLfloat zoom, rotx, roty, rotz, transx, transy, transz;
 bool initialize;
 bool* keys;
+bool won;
 Cube cube;
 
 // viewport matrix
@@ -145,7 +146,7 @@ void mix_up()
 	last_slice = 0; last_dir = 0;
 	
 	// choose a slice and rotate in a direction
-	for ( int i = 0; i < 28; i++ )
+	for ( int i = 0; i < 1; i++ )
 	{
 		do {
 			direction = (double)(rand() / (double)RAND_MAX) > 0.5f ? 1 : 0;
@@ -222,7 +223,15 @@ void timer( int value )
 	keys[GLUT_KEY_DOWN]  = false;
 	keys[GLUT_KEY_LEFT]  = false;
 	keys[GLUT_KEY_RIGHT] = false;
-
+	
+	cout << "Win? " << (cube.win_check() == true ? "true" : "false" ) << endl;
+	
+	if ( won || ( initialize == false && cube.win_check() ) ) 
+	{
+		cout << "Winner!!" << endl;
+		won = true;
+	}
+	
   glutTimerFunc( 25, timer, 0 );
   glutPostRedisplay();
 }
@@ -231,6 +240,7 @@ int main( int argc, char **argv )
 {
   srand( time( 0 ) ); // init pseudo-RNG
   initialize = true;
+  won = false;
 
   glutInit( &argc, argv );
   glutInitDisplayMode( GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH );
