@@ -28,8 +28,8 @@ down and left are counterclockwise rotation.
 *UD keys only work with [1-3]   
 *RL keys only work with [4-9] 
 
-###### *The program was built and tested using *nix computers and is not guaranteed to work*
-###### *on either macintosh, windows, or linux distributions other than debian based linux.*
+> *The program was built and tested using *nix computers and is not guaranteed to work*
+> *on either macintosh, windows, or linux distributions other than debian based linux.*
 
 =======
 team Krostin Kobra   
