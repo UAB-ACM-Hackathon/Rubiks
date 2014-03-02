@@ -30,6 +30,7 @@ class Cube
  	~Cube();
  	void draw();
 	void rotate_sector( int, int );
+	bool win_check();
 };
 
 #endif

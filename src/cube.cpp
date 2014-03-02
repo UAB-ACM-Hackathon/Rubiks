@@ -124,6 +124,32 @@ void Cube::rotate_sector( int i, int direction )
 	}
 }
 
+bool Cube::win_check()
+{
+	for ( int i=0; i<9; i++)
+	{
+	  int* sequence = sectors[i].get_sequence();
+	  int position = sectors[i].get_position();
+	  int color;
+	  
+	  if (position != -1)
+	  {
+	    for (int j=0; j<9; j++)
+	    {
+		    int* u = index( sequence[j] );
+		    int* faces = units[u[0]][u[1]][u[2]].get_faces();
+		    if (j == 0)
+		      color = faces[position];
+		    
+		    if (faces[position] != color)
+		      return false;
+	    }
+	  }
+	}
+	
+	return true;
+}
+
 //***************************************************************************//
 // END OF FILE / cube.cpp                                                    //
 //***************************************************************************//

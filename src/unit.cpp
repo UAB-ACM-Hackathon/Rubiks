@@ -77,6 +77,11 @@ void Unit::rotate( int orientation, int direction )
 	}
 }
 
+int* Unit::get_faces()
+{
+  return faces;
+}
+
 void Unit::print_faces()
 {
 	for ( int i = 0; i < 6; i++ )

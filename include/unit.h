@@ -32,6 +32,7 @@ class Unit
 	void draw();
 	void rotate( int, int );
 	void print_faces();
+	int* get_faces();
 };
 
 #endif
