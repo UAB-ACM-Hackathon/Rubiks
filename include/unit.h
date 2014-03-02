@@ -17,6 +17,7 @@
 
 #include "mesh.h"
 #include "globals.h"
+#include <iostream>
 
 class Unit
 {
@@ -30,6 +31,7 @@ class Unit
  	~Unit();
 	void draw();
 	void rotate( int, int );
+	void print_faces();
 };
 
 #endif

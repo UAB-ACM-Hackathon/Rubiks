@@ -22,6 +22,7 @@ using std::string;
 
 #include "globals.h"
 #include "cube.h"
+#include "sector.h"
 
 GLfloat zoom, rotx, roty, rotz, transx, transy, transz;
 bool* keys;
@@ -140,6 +141,15 @@ void timer( int value )
 	if ( keys[GLUT_KEY_LEFT]  ) { roty -= 3; if ( roty < 360 ) roty += 360; }
 	if ( keys[GLUT_KEY_UP]    ) { rotx += 3; if ( rotx > 360 ) rotx -= 360; }
 	if ( keys[GLUT_KEY_DOWN]  ) { rotx -= 3; if ( rotx < 360 ) rotx += 360; }
+
+	if ( keys[GLUT_KEY_UP] )
+	{
+		if ( keys[49] ) cube.rotate_sector( 1, 0 );
+	}
+	else if ( keys[GLUT_KEY_DOWN] )
+	{
+		if ( keys[49] ) cube.rotate_sector( 1, 1 );
+	}	
 
   glutTimerFunc( 25, timer, 0 );
   glutPostRedisplay();

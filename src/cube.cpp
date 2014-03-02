@@ -39,6 +39,27 @@ Cube::Cube()
   Unit y( 4, 0, 3, 0, 0, 6 ); units[2][2][0] = y;
   Unit z( 4, 0, 3, 0, 0, 0 ); units[2][2][1] = z;
   Unit _( 4, 0, 3, 0, 1, 0 ); units[2][2][2] = _;
+
+	// create sequences
+	int seq1[9] = { 26, 25, 24, 15, 6, 7, 8, 17, 16 };
+	int seq2[9] = { 26, 25, 24, 15, 6, 7, 8, 17, 16 };
+	int seq3[9] = { 26, 25, 24, 15, 6, 7, 8, 17, 16 };
+	int seq4[9] = { 26, 25, 24, 15, 6, 7, 8, 17, 16 };
+	int seq5[9] = { 26, 25, 24, 15, 6, 7, 8, 17, 16 };
+	int seq6[9] = { 26, 25, 24, 15, 6, 7, 8, 17, 16 };
+	int seq7[9] = { 26, 25, 24, 15, 6, 7, 8, 17, 16 };
+	int seq8[9] = { 26, 25, 24, 15, 6, 7, 8, 17, 16 };
+	int seq9[9] = { 26, 25, 24, 15, 6, 7, 8, 17, 16 };
+
+	Sector s1( seq1, 0,  0 ); sectors[0] = s1;
+	Sector s2( seq2, 0, -1 ); sectors[1] = s2;
+	Sector s3( seq3, 0,  1 ); sectors[2] = s3;
+	Sector s4( seq4, 1,  2 ); sectors[3] = s4;
+	Sector s5( seq5, 1, -1 ); sectors[4] = s5;
+	Sector s6( seq6, 1,  3 ); sectors[5] = s6;
+	Sector s7( seq7, 2,  4 ); sectors[6] = s7;
+	Sector s8( seq8, 2, -1 ); sectors[7] = s8;
+	Sector s9( seq9, 2,  5 ); sectors[8] = s9;
 }
 
 Cube::~Cube() { /* unused */ }
@@ -65,6 +86,41 @@ void Cube::draw()
   			glPopMatrix();
 			}
 		}
+	}
+}
+
+int* Cube::index( int ptr )
+{
+	int level, row;
+
+	level = ptr / 9;  ptr = ptr % 9;
+	row   = ptr / 3;  ptr = ptr % 3;
+
+	int* index = new int[3];
+	index[0] = level; index[1] = row, index[2] = ptr;
+
+	return index;
+}
+
+void Cube::rotate_sector( int i, int direction )
+{
+	i--;
+
+	int* sequence = sectors[i].get_sequence();
+
+	Unit to_rotate[9];
+	for ( int i = 0; i < 9; i++ )
+	{
+		int* u = index( sequence[i] );
+		to_rotate[i] = units[u[0]][u[1]][u[2]];
+	}	
+
+	Unit* new_units = sectors[i].rotate( to_rotate, direction );
+
+	for ( int i = 0; i < 9; i++ )
+	{
+		int* u = index( sequence[i] );
+		units[u[0]][u[1]][u[2]] = new_units[i];
 	}
 }
 

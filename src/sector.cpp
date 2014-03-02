@@ -6,7 +6,6 @@
 //***************************************************************************//
 
 #include "sector.h"
-#include <iostream>
 
 using namespace std;
 
@@ -20,7 +19,12 @@ Sector::Sector() { /* do nothing */ }
 Sector::Sector( int *cube_indices, int orientation, int position)
 {
 	this->cube_indices = new int[9];
-	this->cube_indices = cube_indices;
+
+	for ( int i = 0; i < 9; i++ )
+	{
+		this->cube_indices[i] = cube_indices[i];
+	}
+
 	this->orientation = orientation;
 	this->position = position;
 }
@@ -29,22 +33,22 @@ Sector::Sector( int *cube_indices, int orientation, int position)
  * Rotate function called to rotate a sector in a given direction.
  * argument: 0 = CW, 1 = CCW
  */
-void Sector::rotate(Unit *units, int direction)
+Unit* Sector::rotate(Unit *units, int direction)
 {
   if (direction == 0)
   {
-    cw_rotate(units);
+    return cw_rotate(units);
   } 
   else
   {
-    ccw_rotate(units);
+    return ccw_rotate(units);
   }
 }
 
 /*
  * Simulate a sector rotation in a CW direction.
  */
-void Sector::cw_rotate(Unit *units)
+Unit* Sector::cw_rotate(Unit *units)
 {
   Unit t0 = units[0]; 
   Unit t1 = units[1];
@@ -60,12 +64,14 @@ void Sector::cw_rotate(Unit *units)
   units[0] = t0; units[1] = t1;
   
   rotate_units(units, 0);
+
+	return units;
 }
 
 /*
  * Simulate a sector rotation in a CCW direction.
  */
-void Sector::ccw_rotate(Unit *units)
+Unit* Sector::ccw_rotate(Unit *units)
 {
   Unit t0 = units[7]; 
   Unit t1 = units[6];
@@ -80,18 +86,36 @@ void Sector::ccw_rotate(Unit *units)
   
   units[7] = t0; units[6] = t1;
   
-  rotate_units(units, 1);
+  units = rotate_units(units, 1);
+
+	return units;
 }
 
 /*
  * Call the rotate function on every unit to update its status.
  */
-void Sector::rotate_units(Unit *units, int direction)
+Unit* Sector::rotate_units(Unit *units, int direction)
 {
+	Unit* rotated = new Unit[9];
+	
   for (int i=0; i<9; i++)
   {
-    units[i].rotate(orientation, direction);
+    units[i].rotate(this->orientation, direction);
+		rotated[i] = units[i];
+
   }
+
+	return units;
+}
+
+int* Sector::get_sequence()
+{
+	return cube_indices;
+}
+
+void Sector::print_sequence()
+{
+	for ( int i = 0; i < 9; i++ ) { cout << this->cube_indices[i] << endl; }
 }
 
 //***************************************************************************//

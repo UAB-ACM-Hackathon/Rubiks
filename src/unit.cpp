@@ -77,6 +77,15 @@ void Unit::rotate( int orientation, int direction )
 	}
 }
 
+void Unit::print_faces()
+{
+	for ( int i = 0; i < 6; i++ )
+	{
+		cout << faces[i] << " ";
+	}
+	cout << endl;
+}
+
 //***************************************************************************//
 // END OF FILE / unit.cpp                                                    //
 //***************************************************************************//
