@@ -113,6 +113,11 @@ int* Sector::get_sequence()
 	return cube_indices;
 }
 
+int Sector::get_position()
+{
+  return position;
+}
+
 void Sector::print_sequence()
 {
 	for ( int i = 0; i < 9; i++ ) { cout << this->cube_indices[i] << endl; }
