@@ -24,11 +24,12 @@ class Cube
  	Unit units[3][3][3];
 	Sector sectors[9];
 	int* index( int );
-	bool anim_lock, anim_fast;
+	bool anim_lock, anim_fast, boom;
 	int anim_axis, anim_dir;
 	int* anim_seq;
 	Sector sector;
 	GLfloat rot;
+	float spread;
  	
  public:
  	Cube();
@@ -40,6 +41,8 @@ class Cube
 	bool is_animating();
 	bool in_sequence( int, int, int, int* );
 	void end_animation();
+	void explode();
+	void explode_draw();
 };
 
 #endif

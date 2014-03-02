@@ -62,12 +62,19 @@ Cube::Cube()
 	Sector s9( seq9, 2,  3 ); sectors[8] = s9;
 
 	anim_lock = false;
+	spread = 1.0;
 }
 
 Cube::~Cube() { /* unused */ }
 
 void Cube::draw()
 {
+	if ( boom )
+	{
+		explode_draw();
+		return;
+	}
+
 	float x, y, z;
 
 	for ( int i = 0; i < 3; i++ )
@@ -203,6 +210,41 @@ bool Cube::win_check()
 	}
 	
 	return true;
+}
+
+void Cube::explode()
+{
+	boom = true;
+}
+
+void Cube::explode_draw()
+{
+	float x, y, z;
+
+	for ( int i = 0; i < 3; i++ )
+	{
+		for ( int j = 0; j < 3; j++ )
+		{
+			for ( int k = 0; k < 3; k++ )
+			{
+				if ( i == 1 && j == 1 && k == 1 ) continue;
+
+				glPushMatrix();
+
+				x = 2.2 * ( (float)i-1 );
+				y = 2.2 * ( (float)j-1 );
+				z = 2.2 * ( (float)k-1 );
+
+				glTranslatef( x * spread, y * spread, z * spread );
+
+				units[i][j][k].draw();
+
+  			glPopMatrix();
+			}
+		}
+	}
+
+	if ( spread < 20 ) spread *= 1.15;
 }
 
 //***************************************************************************//

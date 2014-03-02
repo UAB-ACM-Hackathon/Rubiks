@@ -172,7 +172,7 @@ void timer( int value )
 	{
 		if ( initialize <= 0 )
 		{
-			initialize = 20;
+			initialize = 1;
 		}
 	}
   else if ( keys[49] )
@@ -234,6 +234,7 @@ void timer( int value )
 	{
 		cout << "Winner!!" << endl;
 		won = true;
+		cube.explode();
 	}
 
   glutTimerFunc( 25, timer, 0 );
