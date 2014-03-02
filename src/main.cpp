@@ -89,6 +89,7 @@ void keyboardDown( unsigned char key, int x, int y )
   switch ( key )
   {
   case 27: exit( 0 ); 			 			 	break;
+  case 114: rotx = 10.0; roty = -10.0; break;
   default: keys[(int) key] = true; 	break;
   }
 
@@ -172,7 +173,7 @@ void timer( int value )
 	{
 		if ( initialize <= 0 )
 		{
-			initialize = 1;
+			initialize = 20;
 		}
 	}
   else if ( keys[49] )
