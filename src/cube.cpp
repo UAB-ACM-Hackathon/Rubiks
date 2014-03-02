@@ -54,12 +54,12 @@ Cube::Cube()
 	Sector s1( seq1, 0,  0 ); sectors[0] = s1;
 	Sector s2( seq2, 0, -1 ); sectors[1] = s2;
 	Sector s3( seq3, 0,  1 ); sectors[2] = s3;
-	Sector s4( seq4, 1,  2 ); sectors[3] = s4;
+	Sector s4( seq4, 1,  4 ); sectors[3] = s4;
 	Sector s5( seq5, 1, -1 ); sectors[4] = s5;
-	Sector s6( seq6, 1,  3 ); sectors[5] = s6;
-	Sector s7( seq7, 2,  4 ); sectors[6] = s7;
+	Sector s6( seq6, 1,  5 ); sectors[5] = s6;
+	Sector s7( seq7, 2,  2 ); sectors[6] = s7;
 	Sector s8( seq8, 2, -1 ); sectors[7] = s8;
-	Sector s9( seq9, 2,  5 ); sectors[8] = s9;
+	Sector s9( seq9, 2,  3 ); sectors[8] = s9;
 
 	anim_lock = false;
 }
@@ -97,8 +97,6 @@ void Cube::draw()
 			}
 		}
 	}
-
-	cout << rot << endl;
 	
 	if ( anim_lock )
 	{
