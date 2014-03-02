@@ -137,19 +137,45 @@ void display()
 
 void timer( int value )
 {
-	if ( keys[GLUT_KEY_RIGHT] ) { roty += 3; if ( roty > 360 ) roty -= 360; }
-	if ( keys[GLUT_KEY_LEFT]  ) { roty -= 3; if ( roty < 360 ) roty += 360; }
-	if ( keys[GLUT_KEY_UP]    ) { rotx += 3; if ( rotx > 360 ) rotx -= 360; }
-	if ( keys[GLUT_KEY_DOWN]  ) { rotx -= 3; if ( rotx < 360 ) rotx += 360; }
-
 	if ( keys[GLUT_KEY_UP] )
 	{
-		if ( keys[49] ) cube.rotate_sector( 1, 0 );
+		if 			( keys[49] ) cube.rotate_sector( 1, 0 );
+		else if ( keys[50] ) cube.rotate_sector( 2, 0 );
+		else if ( keys[51] ) cube.rotate_sector( 3, 0 );
+		else { rotx += 3; if ( rotx > 360 ) rotx -= 360; }
 	}
 	else if ( keys[GLUT_KEY_DOWN] )
 	{
-		if ( keys[49] ) cube.rotate_sector( 1, 1 );
-	}	
+		if 			( keys[49] ) cube.rotate_sector( 1, 1 );
+		else if ( keys[50] ) cube.rotate_sector( 2, 1 );
+		else if ( keys[51] ) cube.rotate_sector( 3, 1 );
+		else { rotx -= 3; if ( rotx < 360 ) rotx += 360; }
+	}
+	else if ( keys[GLUT_KEY_LEFT] )
+	{
+		if 			( keys[52] ) cube.rotate_sector( 4, 0 );
+		else if ( keys[53] ) cube.rotate_sector( 5, 0 );
+		else if ( keys[54] ) cube.rotate_sector( 6, 0 );
+		else if ( keys[55] ) cube.rotate_sector( 7, 0 );
+		else if ( keys[56] ) cube.rotate_sector( 8, 0 );
+		else if ( keys[57] ) cube.rotate_sector( 9, 0 );
+		else { roty -= 3; if ( roty < 360 ) roty += 360; }
+	}
+	else if ( keys[GLUT_KEY_RIGHT] )
+	{
+		if 			( keys[52] ) cube.rotate_sector( 4, 1 );
+		else if ( keys[53] ) cube.rotate_sector( 5, 1 );
+		else if ( keys[54] ) cube.rotate_sector( 6, 1 );
+		else if ( keys[55] ) cube.rotate_sector( 7, 1 );
+		else if ( keys[56] ) cube.rotate_sector( 8, 1 );
+		else if ( keys[57] ) cube.rotate_sector( 9, 1 );
+		else { roty += 3; if ( roty > 360 ) roty -= 360; }
+	}
+
+	keys[GLUT_KEY_UP] 	 = false;
+	keys[GLUT_KEY_DOWN]  = false;
+	keys[GLUT_KEY_LEFT]  = false;
+	keys[GLUT_KEY_RIGHT] = false;
 
   glutTimerFunc( 25, timer, 0 );
   glutPostRedisplay();

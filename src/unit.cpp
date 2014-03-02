@@ -57,21 +57,21 @@ void Unit::rotate( int orientation, int direction )
 	case 1:		// y-axis
 		if ( direction == 0 )
 		{
-			faces[0] = c[3]; faces[1] = c[2]; faces[2] = c[0]; faces[3] = c[1];
+			faces[0] = c[2]; faces[1] = c[3]; faces[2] = c[1]; faces[3] = c[0];
 		}
 		else
 		{
-			faces[0] = c[2]; faces[1] = c[3]; faces[2] = c[1]; faces[3] = c[0];
+			faces[0] = c[3]; faces[1] = c[2]; faces[2] = c[0]; faces[3] = c[1];
 		}
 		break;
 	case 2:		// z-axis
 		if ( direction == 0 )
 		{
-			faces[0] = c[4]; faces[1] = c[5]; faces[4] = c[1]; faces[5] = c[0];
+			faces[0] = c[5]; faces[1] = c[4]; faces[4] = c[0]; faces[5] = c[1];
 		}
 		else
 		{
-			faces[0] = c[5]; faces[1] = c[4]; faces[4] = c[0]; faces[5] = c[1];
+			faces[0] = c[4]; faces[1] = c[5]; faces[4] = c[1]; faces[5] = c[0];
 		}
 		break;
 	}
