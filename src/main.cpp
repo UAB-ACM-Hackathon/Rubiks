@@ -146,8 +146,13 @@ void mix_up()
 	last_slice = 0; last_dir = 0;
 	
 	// choose a slice and rotate in a direction
-	for ( int i = 0; i < 28; i++ )
+	for ( int i = 0; i < 2; i++ )
 	{
+		if ( cube.is_animating() ) 
+		{
+		  i--;
+		  continue;
+		}
 		do {
 			direction = (double)(rand() / (double)RAND_MAX) > 0.5f ? 1 : 0;
 			slice = (int)(9*((double)rand() / (double)RAND_MAX)) + 1;
@@ -230,8 +235,6 @@ void timer( int value )
 	keys[GLUT_KEY_DOWN]  = false;
 	keys[GLUT_KEY_LEFT]  = false;
 	keys[GLUT_KEY_RIGHT] = false;
-	
-	cout << "Win? " << (cube.win_check() == true ? "true" : "false" ) << endl;
 	
 	if ( won || ( initialize == false && cube.win_check() ) ) 
 	{
